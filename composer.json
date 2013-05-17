@@ -1,6 +1,6 @@
 {
     "name": "openpsa/midcom-extras",
-    "type": "library",
+    "type": "midcom-extras",
     "description": "Addons for openpsa/midcom",
     "keywords": ["mvc", "midgard", "framework"],
     "homepage": "http://midgard-project.org/midcom/",
@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "openpsa/midcom": "*"
+        "openpsa/midcom": "*",
+        "openpsa/installer": "*"
     },
     "suggest": {
         "ext-midgard2": ">=10.05.5"
