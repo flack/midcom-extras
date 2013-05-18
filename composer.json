@@ -12,11 +12,18 @@
             "homepage": "http://www.contentcontrol-berlin.de/"
         }
     ],
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear.php.net"
+        }
+    ],
     "require": {
         "php": ">=5.3.0",
-        "openpsa/midcom": "*",
+        "openpsa/midcom": "dev-master",
         "openpsa/installer": "dev-master"
     },
+    "minimum-stability": "dev",
     "suggest": {
         "ext-midgard2": ">=10.05.5"
     },
