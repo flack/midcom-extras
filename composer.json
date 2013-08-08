@@ -1,6 +1,6 @@
 {
     "name": "openpsa/midcom-extras",
-    "type": "midcom-extras",
+    "type": "midcom-package",
     "description": "Addons for openpsa/midcom",
     "keywords": ["mvc", "midgard", "framework"],
     "homepage": "http://midgard-project.org/midcom/",
