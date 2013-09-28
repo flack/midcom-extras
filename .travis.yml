@@ -14,4 +14,4 @@ before_script:
   - sudo `which composer` self-update
   - sudo `which composer` install
 
-script: phpunit --debug
+script: sudo `which phpunit --debug`
