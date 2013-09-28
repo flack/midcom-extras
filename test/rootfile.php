@@ -24,23 +24,18 @@ if (extension_loaded('midgard2'))
     }
 
     // if we still can't connect to a DB, we'll create a new one
-    if (!$midgard->is_connected())
+    if (true || !$midgard->is_connected())
     {
-        $config = new midgard_config();
-        $config->dbtype = 'SQLite';
-        $config->database = 'openpsa_test';
-        $config->blobdir = OPENPSA_TEST_ROOT . '__output/blobs';
-        $config->logfilename = OPENPSA_TEST_ROOT . '__output/midgard2.log';
-        $config->tablecreate = true;
-        $config->tableupdate = true;
-        $config->loglevel = 'warn';
+        openpsa\installer\mgd2setup::install(OPENPSA_TEST_ROOT . '__output', 'SQLite');
 
-        if (!$midgard->open_config($config))
-        {
-            throw new Exception('Could not open Midgard connection to test database: ' . $midgard->get_error_string());
-        }
+        /*
+         * @todo: This constant is a workaround to make sure the output
+         * dir is not deleted again straight away. The proper fix would
+         * of course be to delete the old output dir before running the
+         * db setup, but this requires further changes in dependent repos
+         */
+        define('OPENPSA_DB_CREATED', true);
         require_once OPENPSA_TEST_ROOT . '../tools/bootstrap.php';
-        openpsa_prepare_database($config);
         $GLOBALS['midcom_config_local']['midcom_root_topic_guid'] = openpsa_prepare_topics();
     }
 }

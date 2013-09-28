@@ -3,6 +3,7 @@ language: php
 php:
   - 5.3
   - 5.4
+  - 5.5
 
 env:
   - MIDGARD_EXT_VERSION=ratatoskr
@@ -10,7 +11,7 @@ env:
 
 before_script:
   - ./test/travis_midgard2.sh
-  - composer install
-  - sudo cp vendor/openpsa/midcom/schemas/* /usr/share/midgard2/schema
+  - sudo `which composer` self-update
+  - sudo `which composer` install
 
 script: phpunit --debug
