@@ -26,7 +26,7 @@ if (extension_loaded('midgard2'))
     // if we still can't connect to a DB, we'll create a new one
     if (!$midgard->is_connected())
     {
-        openpsa\installer\mgd2setup::install(OPENPSA_TEST_ROOT . '__output', 'SQLite');
+        openpsa\installer\midgard2\setup::install(OPENPSA_TEST_ROOT . '__output', 'SQLite');
 
         /*
          * @todo: This constant is a workaround to make sure the output
