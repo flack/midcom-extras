@@ -25,7 +25,8 @@
         "pear-pear/Auth_SASL": "*",
         "php": ">=5.3.0",
         "openpsa/midcom": "dev-master",
-        "openpsa/installer": "dev-master"
+        "openpsa/installer": "dev-master",
+        "openpsa/quickform": "dev-master"
     },
     "minimum-stability": "dev",
     "suggest": {
