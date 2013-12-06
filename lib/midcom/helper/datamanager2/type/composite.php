@@ -30,6 +30,7 @@
  * - <b>window_mode</b>: Whether the composites should be edited in a modal pop-up window instead of in-place. Useful for tight spaces.
  * - <b>maximum_items</b>: How many items are allowed into the composite. After this creation is disabled.
  * - <b>enable_creation</b>: Whether creation of new items is allowed
+ * - <b>create_position</b>: Should creation dialog be shown on top or bottom of item list
  * - <b>area_element</b>: The HTML element surrounding the composites. By default div.
  * - <b>context</b>: Composite context for filtering from several composite items in one schema
  * - <b>context_key</b>: Composite context key in the child object
@@ -136,6 +137,13 @@ class midcom_helper_datamanager2_type_composite extends midcom_helper_datamanage
      * @var boolean
      */
     public $enable_creation = true;
+
+    /**
+     * Should new entries be positioned at top or bottom of list
+     *
+     * @var string
+     */
+    public $create_position = 'header';
 
     /**
      * Wrapping item tag name
@@ -459,6 +467,11 @@ class midcom_helper_datamanager2_type_composite extends midcom_helper_datamanage
             return false;
         }
 
+        if ($this->create_position === 'header')
+        {
+            midcom::get('style')->show("_dm2_composite_{$this->style_element_name}_header");
+        }
+
         foreach (array_keys($this->_schemadb) as $name)
         {
             // Add default values to fields
@@ -482,7 +495,10 @@ class midcom_helper_datamanager2_type_composite extends midcom_helper_datamanage
             echo "</{$this->area_element}>\n";
         }
 
-        midcom::get('style')->show("_dm2_composite_{$this->style_element_name}_footer");
+        if ($this->create_position === 'footer')
+        {
+            midcom::get('style')->show("_dm2_composite_{$this->style_element_name}_footer");
+        }
 
         foreach (array_keys($this->_schemadb) as $name)
         {
@@ -521,7 +537,11 @@ class midcom_helper_datamanager2_type_composite extends midcom_helper_datamanage
         );
 
         midcom_core_context::get()->set_custom_key('midcom_helper_datamanager2_widget_composite', $request_data);
-        midcom::get('style')->show("_dm2_composite_{$this->style_element_name}_header");
+        if (   $this->create_position !== 'header'
+            || !$this->add_creation_data())
+        {
+            midcom::get('style')->show("_dm2_composite_{$this->style_element_name}_header");
+        }
 
         $item_count = 0;
         foreach ($this->objects as $identifier => $object)
@@ -542,7 +562,8 @@ class midcom_helper_datamanager2_type_composite extends midcom_helper_datamanage
         }
 
         //If creation data was added, the footer is already spliced in
-        if (!$this->add_creation_data())
+        if (   $this->create_position !== 'footer'
+            || !$this->add_creation_data())
         {
             midcom::get('style')->show("_dm2_composite_{$this->style_element_name}_footer");
         }
