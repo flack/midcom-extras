@@ -16,6 +16,10 @@
         {
             "type": "pear",
             "url": "http://pear.php.net"
+        },
+        {
+            "type": "pear",
+            "url": "http://pear.horde.org"
         }
     ],
     "require": {
