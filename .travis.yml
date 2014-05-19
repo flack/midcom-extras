@@ -10,8 +10,8 @@ env:
   - MIDGARD_EXT_VERSION=master
 
 before_script:
+  - composer self-update
   - ./test/travis_midgard2.sh
-  - sudo `which composer` self-update
-  - sudo `which composer` install
+  - composer install
 
 script: sudo `which phpunit --debug`
