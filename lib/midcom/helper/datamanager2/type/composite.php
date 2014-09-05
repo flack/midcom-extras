@@ -211,8 +211,6 @@ class midcom_helper_datamanager2_type_composite extends midcom_helper_datamanage
         }
 
         $this->_schemadb = midcom_helper_datamanager2_schema::load_database($this->child_schemadb);
-
-        return true;
     }
 
     /**
