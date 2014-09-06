@@ -262,7 +262,6 @@ class midcom_helper_datamanager2_type_tabledata extends midcom_helper_datamanage
     public function _on_initialize()
     {
         $this->_original_columns = $this->columns;
-        return true;
     }
 
     /**
