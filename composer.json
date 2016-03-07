@@ -12,21 +12,15 @@
             "homepage": "http://www.contentcontrol-berlin.de/"
         }
     ],
-    "repositories": [
-        {
-            "type": "pear",
-            "url": "http://pear.php.net"
-        }
-    ],
     "require": {
         "php": ">=5.3.0",
         "openpsa/midcom": "dev-master",
-        "openpsa/installer": "dev-master",
-        "openpsa/quickform": "dev-master"
+        "openpsa/quickform": "^3.3.0",
+        "openpsa/midgard-portable": "dev-master"
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "suggest": {
-        "ext-midgard2": ">=10.05.5",
         "pear-pear/Mail": "To use email import functionality",
         "pear-pear/Mail_mime": "To use email import functionality",
         "pear-pear/Net_SMTP": "To use email import functionality",
