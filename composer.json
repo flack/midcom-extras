@@ -16,7 +16,7 @@
         "php": ">=5.3.0",
         "openpsa/midcom": "dev-master",
         "openpsa/quickform": "^3.3.0",
-        "openpsa/midgard-portable": "dev-master"
+        "openpsa/midgard-portable": "^0.8.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
