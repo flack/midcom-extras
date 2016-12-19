@@ -3,7 +3,7 @@
     "type": "midcom-package",
     "description": "Addons for openpsa/midcom",
     "keywords": ["mvc", "midgard", "framework"],
-    "homepage": "http://midgard-project.org/midcom/",
+    "homepage": "http://openpsa2.org/",
     "license": "LGPL",
     "authors": [
         {
@@ -14,9 +14,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "openpsa/midcom": "dev-master",
-        "openpsa/quickform": "^3.3.0",
-        "openpsa/midgard-portable": "^0.8.1"
+        "openpsa/midcom": "^9.0.0",
+        "openpsa/quickform": "^3.3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
