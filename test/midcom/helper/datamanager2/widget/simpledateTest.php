@@ -37,7 +37,7 @@ class midcom_helper_datamanager2_widget_simpledateTest extends openpsa_testcase
             )
         );
 
-        $dm2_helper = new openpsa_test_dm2_helper;
+        $dm2_helper = new midcom_extras_test_dm2_helper;
         $widget = $dm2_helper->get_widget('simpledate', 'date');
 
         $this->assertNull($widget->get_default(), 'nullstorage test failed');
@@ -48,7 +48,7 @@ class midcom_helper_datamanager2_widget_simpledateTest extends openpsa_testcase
         $this->assertEquals($default_values, $widget->get_default(), 'nullstorage/default test failed');
 
         $event = new org_openpsa_calendar_event_dba;
-        $dm2_helper = new openpsa_test_dm2_helper($event);
+        $dm2_helper = new midcom_extras_test_dm2_helper($event);
         $widget = $dm2_helper->get_widget('simpledate', 'date', array('storage' => 'start'));
 
         $this->assertNull($widget->get_default(), 'create test failed');
@@ -63,7 +63,7 @@ class midcom_helper_datamanager2_widget_simpledateTest extends openpsa_testcase
             'end' => $timestamp + 60 * 60
         ));
 
-        $dm2_helper = new openpsa_test_dm2_helper($event);
+        $dm2_helper = new midcom_extras_test_dm2_helper($event);
         //Lazy workaround to reuse the default array from above
         $dm2_helper->get_widget('simpledate', 'date', array('storage' => 'start'));
         $widget = $dm2_helper->get_widget('simpledate', 'date', array('storage' => 'start'));
