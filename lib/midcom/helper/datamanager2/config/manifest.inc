@@ -65,3 +65,19 @@
         ),
     ),
 ),
+
+'class_mapping' => array
+(
+	'midcom_core_temporary_object_db' => 'midcom_core_temporary_object',
+),
+'customdata' => array
+(
+    'midcom.services.cron' => array
+    (
+        array
+        (
+            'handler' => 'midcom_cron_tmpservice',
+            'recurrence' => MIDCOM_CRON_HOUR,
+        ),
+    ),
+),

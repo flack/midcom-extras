@@ -128,7 +128,8 @@ class midcom_helper_datamanager2_controller_create extends midcom_helper_dataman
         // We use either a null or a tmp storage backend, depending on current state.
         if (array_key_exists($this->_tmpid_fieldname, $_REQUEST)) {
             $tmpid = $_REQUEST[$this->_tmpid_fieldname];
-            $object = midcom::get()->tmp->request_object($tmpid);
+            $service = new midcom_services_tmp;
+            $object = $service->request_object($tmpid);
 
             if (!empty($object->guid)) {
                 $storage = new midcom_helper_datamanager2_storage_tmp($this->schemadb[$this->schemaname], $this->defaults, $object);

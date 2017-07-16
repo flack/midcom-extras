@@ -75,7 +75,8 @@ abstract class midcom_helper_datamanager2_storage extends midcom_baseclasses_com
     function create_temporary_object()
     {
         if ($this->object === null) {
-            $this->object = midcom::get()->tmp->create_object();
+            $service = new midcom_services_tmp;
+            $this->object = $service->create_object();
         }
     }
 
