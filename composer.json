@@ -26,6 +26,6 @@
         "pear-pear/Auth_SASL": "To use email import functionality"
     },
     "autoload": {
-        "classmap": ["lib"]
+        "classmap": ["lib", "src"]
     }
 }
