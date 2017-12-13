@@ -15,7 +15,7 @@ class midcom_helper_datamanager2_datamanagerTest extends openpsa_testcase
 {
     public function test_set_schema()
     {
-        $filename = 'file:/../test/midcom/helper/datamanager2/__files/schemadb_invoice.inc';
+        $filename = 'conf:/helper/datamanager2/__files/schemadb_invoice.inc';
         $schemadb = midcom_helper_datamanager2_schema::load_database($filename);
         $dm = new midcom_helper_datamanager2_datamanager($schemadb);
 
@@ -28,7 +28,7 @@ class midcom_helper_datamanager2_datamanagerTest extends openpsa_testcase
 
     public function test_set_storage()
     {
-        $filename = 'file:/../test/midcom/helper/datamanager2/__files/schemadb_invoice.inc';
+        $filename = 'conf:/helper/datamanager2/__files/schemadb_invoice.inc';
         $schemadb = midcom_helper_datamanager2_schema::load_database($filename);
         $dm = new midcom_helper_datamanager2_datamanager($schemadb);
         $dm->set_schema();
@@ -41,7 +41,7 @@ class midcom_helper_datamanager2_datamanagerTest extends openpsa_testcase
 
     public function test_autoset_storage()
     {
-        $filename = 'file:/../test/midcom/helper/datamanager2/__files/schemadb_invoice.inc';
+        $filename = 'conf:/helper/datamanager2/__files/schemadb_invoice.inc';
         $schemadb = midcom_helper_datamanager2_schema::load_database($filename);
         $dm = new midcom_helper_datamanager2_datamanager($schemadb);
 

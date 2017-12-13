@@ -15,7 +15,7 @@ class midcom_helper_datamanager2_storage_midgardTest extends openpsa_testcase
 {
     public function test_on_load_data()
     {
-        $filename = 'file:/../test/midcom/helper/datamanager2/__files/schemadb_invoice.inc';
+        $filename = 'conf:/helper/datamanager2/__files/schemadb_invoice.inc';
         $schemadb = midcom_helper_datamanager2_schema::load_database($filename);
         $invoice = $this->create_object('org_openpsa_invoices_invoice_dba', ['description' => 'TEST']);
 
@@ -26,7 +26,7 @@ class midcom_helper_datamanager2_storage_midgardTest extends openpsa_testcase
 
     public function test_on_store_data()
     {
-        $filename = 'file:/../test/midcom/helper/datamanager2/__files/schemadb_invoice.inc';
+        $filename = 'conf:/helper/datamanager2/__files/schemadb_invoice.inc';
         $schemadb = midcom_helper_datamanager2_schema::load_database($filename);
         $invoice = $this->create_object('org_openpsa_invoices_invoice_dba');
 
@@ -37,7 +37,7 @@ class midcom_helper_datamanager2_storage_midgardTest extends openpsa_testcase
 
     public function test_on_update_object()
     {
-        $filename = 'file:/../test/midcom/helper/datamanager2/__files/schemadb_invoice.inc';
+        $filename = 'conf:/helper/datamanager2/__files/schemadb_invoice.inc';
         $schemadb = midcom_helper_datamanager2_schema::load_database($filename);
         $invoice = $this->create_object('org_openpsa_invoices_invoice_dba');
 

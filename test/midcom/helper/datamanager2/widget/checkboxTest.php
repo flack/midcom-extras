@@ -6,7 +6,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License
  */
 
-require_once OPENPSA_TEST_ROOT . 'midcom/helper/datamanager2/__helper/dm2.php';
+require_once __DIR__ . '/../__helper/dm2.php';
 
 /**
  * OpenPSA testcase
