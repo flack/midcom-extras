@@ -11,7 +11,15 @@
  */
 class midcom_cron_tmpservice extends midcom_baseclasses_components_cron_handler
 {
+    /**
+     * Compat for openpsa 9.3 and below
+     */
     public function _on_execute()
+    {
+        $this->execute();
+    }
+
+    public function execute()
     {
         $qb = midcom_core_temporary_object::new_query_builder();
         $qb->add_constraint('timestamp', '<', time() - midcom::get()->config->get('midcom_temporary_resource_timeout', 86400));
