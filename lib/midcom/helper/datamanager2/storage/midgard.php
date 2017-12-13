@@ -16,7 +16,7 @@
 class midcom_helper_datamanager2_storage_midgard extends midcom_helper_datamanager2_storage
 {
     /**
-     * @var midcom_helper_reflector
+     * @var midgard_reflection_property
      */
     private $reflector;
 
@@ -33,7 +33,7 @@ class midcom_helper_datamanager2_storage_midgard extends midcom_helper_datamanag
     {
         parent::__construct($schema);
         $this->object = $object;
-        $this->reflector = midcom_helper_reflector::get($object);
+        $this->reflector = new midgard_reflection_property($object->__mgdschema_class_name__);
     }
 
     public function _on_store_data($name, $data)
