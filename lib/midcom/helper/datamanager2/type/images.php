@@ -693,7 +693,7 @@ class midcom_helper_datamanager2_type_images extends midcom_helper_datamanager2_
         $zj = false;
         switch (strtolower($extension)) {
             case 'zip':
-                $extract_cmd = midcom::get()->config->get('utility_unzip') . " -q -b -L -o {$new_name} -d {$tmp_dir}";
+                $extract_cmd = $this->_config->get('utility_unzip') . " -q -b -L -o {$new_name} -d {$tmp_dir}";
                 break;
             case 'tgz':
             case 'tar.gz':
@@ -703,7 +703,7 @@ class midcom_helper_datamanager2_type_images extends midcom_helper_datamanager2_
                     $zj = 'j';
                 }
             case 'tar':
-                $extract_cmd = "tar -x{$zj} -C {$tmp_dir} -f {$new_name}";
+                $extract_cmd = $this->_config->get('utility_tar') . " -x{$zj} -C {$tmp_dir} -f {$new_name}";
                 break;
             default:
                 // Unknown extension (we should never hit this)

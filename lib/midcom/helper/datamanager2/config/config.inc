@@ -21,6 +21,9 @@
 
 'codemirror_config_snippet' => "file://midcom/helper/datamanager2/config/codemirror_default",
 
+'utility_unzip' => 'unzip',
+'utility_tar' => 'tar',
+
 'html_purify' => true,
 'html_purify_config' => array
 (
