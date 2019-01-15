@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use midcom_core_context;
 use midcom_helper_datamanager2_controller;
 use midcom;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @package midcom.workflow
@@ -55,8 +56,9 @@ class datamanager2 extends dialog
         ];
     }
 
-    public function run()
+    public function run(Request $request)
     {
+        $request->overrideGlobals();
         $context = midcom_core_context::get();
         midcom::get()->head->add_jsfile(MIDCOM_STATIC_URL . '/midcom.workflow/dialog.js');
         midcom::get()->style->append_styledir(__DIR__ . '/style');
