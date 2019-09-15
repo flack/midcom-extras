@@ -10,4 +10,4 @@ php:
 before_script:
   - ./test/travis.sh
 
-script: phpunit --debug
+script: vendor/bin/phpunit --debug
