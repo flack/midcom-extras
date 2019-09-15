@@ -140,7 +140,7 @@ class midcom_helper_datamanager2_ajax_autocomplete
                     break;
                 default:
                     debug_add("can't handle field type " . $field_type, MIDCOM_LOG_WARN);
-                    continue;
+                    continue 2;
             }
             debug_add("adding search (ORed) constraint: {$field} {$operator} '{$query}'");
             $constraints[] = [
