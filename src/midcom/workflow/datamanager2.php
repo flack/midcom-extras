@@ -13,6 +13,7 @@ use midcom_core_context;
 use midcom_helper_datamanager2_controller;
 use midcom;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @package midcom.workflow
@@ -44,7 +45,7 @@ class datamanager2 extends dialog
             ->setAllowedTypes('controller', ['null', 'midcom_helper_datamanager2_controller']);
     }
 
-    public function get_button_config()
+    public function get_button_config() : array
     {
         return [
             MIDCOM_TOOLBAR_LABEL => midcom::get()->i18n->get_l10n('midcom')->get('edit'),
@@ -56,7 +57,7 @@ class datamanager2 extends dialog
         ];
     }
 
-    public function run(Request $request)
+    public function run(Request $request) : Response
     {
         $request->overrideGlobals();
         $context = midcom_core_context::get();
