@@ -111,7 +111,7 @@ abstract class midcom_helper_datamanager2_storage extends midcom_baseclasses_com
             // Convert_to_storage is called always, the event handler can be used to manage
             // non-storage-backend driven storage operations as well (mainly for the blob type)
             $data = $types[$name]->convert_to_storage();
-            if ($type_definition['storage']['location'] !== null) {
+            if (!empty($type_definition['storage']) && $type_definition['storage']['location'] !== null) {
                 if ($types[$name]->serialized_storage) {
                     $data = serialize($data);
                 }
@@ -159,7 +159,7 @@ abstract class midcom_helper_datamanager2_storage extends midcom_baseclasses_com
                 }
                 continue;
             }
-            if ($type_definition['storage']['location'] !== null) {
+            if (!empty($type_definition['storage']) && $type_definition['storage']['location'] !== null) {
                 $data = $this->_on_load_data($name);
                 if ($types[$name]->serialized_storage
                     && is_string($data)) {

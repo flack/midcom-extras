@@ -53,7 +53,7 @@ class midcom_helper_datamanager2_widget_text extends midcom_helper_datamanager2_
         $this->_require_type_value();
 
         if ($this->maxlength == -1) {
-            if (array_key_exists('maxlength', $this->_type)) {
+            if (property_exists($this->_type, 'maxlength')) {
                 $this->maxlength = $this->_type->maxlength;
             }
         }

@@ -164,7 +164,7 @@ abstract class midcom_helper_datamanager2_widget extends midcom_baseclasses_comp
      */
     protected function _require_type_value()
     {
-        if (   !array_key_exists('value', $this->_type)
+        if (   !property_exists($this->_type, 'value')
             || is_array($this->_type->value)
             || (   is_object($this->_type->value)
                 && !$this->_type->value instanceof DateTime)) {

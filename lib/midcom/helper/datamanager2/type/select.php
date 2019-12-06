@@ -541,6 +541,6 @@ class midcom_helper_datamanager2_type_select extends midcom_helper_datamanager2_
     public function convert_to_html()
     {
         $values_localized = array_map([$this, 'translate'], $this->combine_values());
-        return implode($values_localized, ', ');
+        return implode(', ', $values_localized);
     }
 }
