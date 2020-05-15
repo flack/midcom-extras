@@ -83,7 +83,7 @@ class midcom_helper_datamanager2_widget_simpledate extends midcom_helper_dataman
     {
         for($i = 0; $i < strlen($this->format); $i++)
         {
-            $key = $this->format{$i};
+            $key = $this->format[$i];
 
             $this->_elements[] = $this->_form->createElement
             (
@@ -113,78 +113,78 @@ class midcom_helper_datamanager2_widget_simpledate extends midcom_helper_dataman
     {
         for($i = 0; $i < strlen($this->format); $i++)
         {
-            switch ($this->format{$i})
+            switch ($this->format[$i])
             {
                 case 'd':
-                    $this->_items[$this->format{$i}] = array();
-                    $this->_populate_first_item($this->format{$i});
+                    $this->_items[$this->format[$i]] = array();
+                    $this->_populate_first_item($this->format[$i]);
 
                     for ($d=1; $d<=31; $d++)
                     {
                         $value = $d<10?"0{$d}":$d;
-                        $this->_items[$this->format{$i}][$d] = $value;
+                        $this->_items[$this->format[$i]][$d] = $value;
                     }
                     break;
                 case 'M':
                 case 'm':
                 case 'F':
-                    $this->_items[$this->format{$i}] = array();
-                    $this->_populate_first_item($this->format{$i});
+                    $this->_items[$this->format[$i]] = array();
+                    $this->_populate_first_item($this->format[$i]);
 
                     for ($m = 1; $m <= 12; $m++)
                     {
                         $value = $m < 10 ? "0{$m}" : $m;
-                        $this->_items[$this->format{$i}][$m] = $value;
+                        $this->_items[$this->format[$i]][$m] = $value;
                     }
                     break;
                 case 'Y':
-                    $this->_items[$this->format{$i}] = array();
-                    $this->_populate_first_item($this->format{$i});
+                    $this->_items[$this->format[$i]] = array();
+                    $this->_populate_first_item($this->format[$i]);
 
                     for ($y = $this->minyear; $y <= $this->maxyear; $y++)
                     {
                         $value = $y;
-                        $this->_items[$this->format{$i}][$value] = $value;
+                        $this->_items[$this->format[$i]][$value] = $value;
                     }
                     break;
                 case 'y':
-                    $this->_items[$this->format{$i}] = array();
-                    $this->_populate_first_item($this->format{$i});
+                    $this->_items[$this->format[$i]] = array();
+                    $this->_populate_first_item($this->format[$i]);
 
                     for ($y = $this->minyear; $y <= $this->maxyear; $y++)
                     {
                         $value = substr($y, -2);
-                        $this->_items[$this->format{$i}][$value] = $value;
+                        $this->_items[$this->format[$i]][$value] = $value;
                     }
                     break;
                 case 'H':
-                    $this->_items[$this->format{$i}] = array();
-                    $this->_populate_first_item($this->format{$i});
+                    $this->_items[$this->format[$i]] = array();
+                    $this->_populate_first_item($this->format[$i]);
 
                     for ($h = 0; $h <= 12; $h++)
                     {
                         $value = $h < 10 ? "0{$h}" : $h;
-                        $this->_items[$this->format{$i}][$h] = $value;
+                        $this->_items[$this->format[$i]][$h] = $value;
                     }
                     break;
                 case 'i':
-                    $this->_items[$this->format{$i}] = array();
-                    $this->_populate_first_item($this->format{$i});
+                    $this->_items[$this->format[$i]] = array();
+                    $this->_populate_first_item($this->format[$i]);
 
                     for ($m = 0; $m <= 59; $m++)
                     {
                         $value = $m < 10 ? "0{$m}" : $m;
-                        $this->_items[$this->format{$i}][$m] = $value;
+                        $this->_items[$this->format[$i]][$m] = $value;
                     }
                     break;
                 case 's':
-                    $this->_items[$this->format{$i}] = array();
-                    $this->_populate_first_item($this->format{$i});
+                    $this->_items[$this->format[$i]] = array();
+                    $this->_populate_first_item($this->format[$i]);
 
                     for ($s = 0; $s <= 59; $s++)
                     {
                         $value = $s < 10 ? "0{$s}" : $s;
-                        $this->_items[$this->format{$i}][$s] = $value;
+                        $this->_items[$this->format[$i]][$s] = $value;
                     }
                     break;
             }
@@ -216,7 +216,7 @@ class midcom_helper_datamanager2_widget_simpledate extends midcom_helper_dataman
         $defaults = Array();
         for ($i = 0; $i < strlen($this->format); $i++)
         {
-            switch ($this->format{$i})
+            switch ($this->format[$i])
             {
                 case 'd':
                     $format = 'j';
@@ -235,18 +235,18 @@ class midcom_helper_datamanager2_widget_simpledate extends midcom_helper_dataman
             }
             if ($this->_type->is_empty())
             {
-                $defaults[$this->format{$i}] = '';
+                $defaults[$this->format[$i]] = '';
             }
             else
             {
                 $value = (int) $this->_type->value->format($format);
                 if ($value == 0)
                 {
-                    $defaults[$this->format{$i}] = '';
+                    $defaults[$this->format[$i]] = '';
                 }
                 else
                 {
-                    $defaults[$this->format{$i}] = $value;
+                    $defaults[$this->format[$i]] = $value;
                 }
             }
         }
@@ -328,7 +328,7 @@ class midcom_helper_datamanager2_widget_simpledate extends midcom_helper_dataman
 
         for ($i = 0; $i < strlen($this->format); $i++)
         {
-            switch ($this->format{$i})
+            switch ($this->format[$i])
             {
                 case 'd':
                 case 'M':
