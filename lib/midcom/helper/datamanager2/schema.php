@@ -303,7 +303,7 @@ class midcom_helper_datamanager2_schema extends midcom_baseclasses_components_pu
         } else {
             $l10n_name = midcom_core_context::get()->get_key(MIDCOM_CONTEXT_COMPONENT);
         }
-        if (!midcom::get()->componentloader->is_installed($l10n_name)) {
+        if (!$l10n_name || !midcom::get()->componentloader->is_installed($l10n_name)) {
             $l10n_name = 'midcom';
         }
         $this->l10n_schema = $this->_i18n->get_l10n($l10n_name);
@@ -502,7 +502,7 @@ class midcom_helper_datamanager2_schema extends midcom_baseclasses_components_pu
                 $path = $raw_db;
                 if (!array_key_exists($path, $loaded_dbs)) {
                     $data = midcom_helper_misc::get_snippet_content($raw_db);
-                    $loaded_dbs[$path] = midcom_helper_misc::parse_config($data);
+                    $loaded_dbs[$path] = midcom_helper_misc::parse_config($data, $path);
                 }
 
                 $raw_db = $loaded_dbs[$path];

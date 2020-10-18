@@ -28,9 +28,6 @@ class midcom_helper_datamanager2_ajax_autocomplete
 
     private function _verify_request()
     {
-        // Load component if possible
-        midcom::get()->componentloader->load_graceful($this->_request['component']);
-
         if (!class_exists($this->_request['class'])) {
             throw new midcom_error("Class {$this->_request['class']} could not be loaded");
         }
