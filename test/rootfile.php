@@ -10,7 +10,8 @@ $GLOBALS['midcom_config_local'] = [
     'midcom_components' => [
         'midcom.helper.datamanager2' => dirname(__DIR__) . '/lib/midcom/helper/datamanager2'
     ],
-    'midcom_config_basedir' => __DIR__
+    'midcom_config_basedir' => __DIR__,
+    'midcom_services_rcs_backend_class' => midcom_services_rcs_backend_git::class,
 ];
 
 // Check that the environment is a working one

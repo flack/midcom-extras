@@ -2,6 +2,9 @@
 /.buildpath
 /.settings
 /vendor
+/test/__output
+/var
+/web
 composer.phar
 composer.lock
 phpunit.xml

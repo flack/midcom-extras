@@ -6,7 +6,8 @@ php:
   - 7.3
   - 7.4
 
-before_script:
-  - ./test/travis.sh
+install:
+  - travis_retry composer install
+  - sudo chown -R travis var/
 
 script: vendor/bin/phpunit --debug
