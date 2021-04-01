@@ -7,11 +7,11 @@
  */
 
 /**
- * Base class for unittests, provides some helper methods
+ * Helper methods for DM2 tests, use in openpsa_testcase children
  *
  * @package openpsa.test
  */
-abstract class dm2_testcase extends openpsa_testcase
+trait dm2_testcase
 {
     public function set_dm2_formdata(midcom_helper_datamanager2_controller $controller, array $formdata)
     {
