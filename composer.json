@@ -31,5 +31,13 @@
     },
     "autoload": {
         "classmap": ["lib", "src"]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "openpsa\\installer\\installer::setup_root_package"
+        ],
+        "post-update-cmd": [
+            "openpsa\\installer\\installer::setup_root_package"
+        ]
     }
 }
