@@ -41,9 +41,7 @@ jobs:
           ${{ runner.os }}-php-${{ matrix.php-versions }}
 
     - name: Install dependencies
-      run: |
-        composer install --prefer-dist --no-progress
-        sudo chown -R runner var/
+      run: composer install --prefer-dist --no-progress
 
     - name: Run test suite
       run: vendor/bin/phpunit
