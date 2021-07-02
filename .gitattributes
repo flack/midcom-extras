@@ -1,0 +1,5 @@
+external/** linguist-vendored
+static/midcom.helper.datamanager2/codemirror-*/** linguist-vendored
+static/midcom.helper.datamanager2/tinymce/** linguist-vendored
+static/midcom.helper.datamanager2/jquery.progressbar/** linguist-vendored
+static/midcom.helper.datamanager2/simplemde/** linguist-vendored
