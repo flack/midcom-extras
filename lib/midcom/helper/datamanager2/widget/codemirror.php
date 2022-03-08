@@ -93,7 +93,7 @@ class midcom_helper_datamanager2_widget_codemirror extends midcom_helper_dataman
         $this->_form->addElement('textarea', $this->name, $this->_translate($this->_field['title']), $attributes);
         $this->_form->applyFilter($this->name, 'trim');
 
-        $config = midcom_helper_misc::get_snippet_content_graceful($this->_config->get('codemirror_config_snippet'));
+        $config = (string) midcom_helper_misc::get_snippet_content_graceful($this->_config->get('codemirror_config_snippet'));
 
         $config = str_replace('{$id}', $attributes['id'], $config);
         $config = str_replace('{$read_only}', 'false', $config);

@@ -220,7 +220,7 @@ class midcom_helper_datamanager2_type_blobs extends midcom_helper_datamanager2_t
             'filesize' => $stats[7],
             'formattedsize' => midcom_helper_misc::filesize_to_string($stats[7]),
             'lastmod' => $stats[9],
-            'isoformattedlastmod' => strftime('%Y-%m-%d %T', $stats[9]),
+            'isoformattedlastmod' => date('Y-m-d H:i:s', $stats[9]),
             'size_x' => $att->get_parameter('midcom.helper.datamanager2.type.blobs', 'size_x'),
             'size_y' => $att->get_parameter('midcom.helper.datamanager2.type.blobs', 'size_y'),
             'size_line' => $att->get_parameter('midcom.helper.datamanager2.type.blobs', 'size_line'),

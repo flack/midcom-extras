@@ -109,7 +109,7 @@ class midcom_helper_datamanager2_type_date extends midcom_helper_datamanager2_ty
             $this->value = new DateTime('0000-00-00 00:00:00');
         } else {
             if (is_numeric($source)) {
-                $source = strftime('%Y-%m-%d %H:%M:%S', $source);
+                $source = date('Y-m-d H:i:s', $source);
             }
             $this->value = new DateTime($source);
         }

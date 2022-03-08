@@ -538,7 +538,7 @@ class midcom_helper_datamanager2_schema extends midcom_baseclasses_components_pu
      */
     public function translate_schema_string($string)
     {
-        $translate_string = strtolower($string);
+        $translate_string = strtolower((string) $string);
 
         if ($this->l10n_schema->string_available($translate_string)) {
             return $this->l10n_schema->get($translate_string);
