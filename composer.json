@@ -39,5 +39,10 @@
         "post-update-cmd": [
             "openpsa\\installer\\installer::setup_root_package"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "openpsa/installer": true
+        }
     }
 }
