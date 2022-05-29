@@ -41,7 +41,7 @@ class midcom_core_temporary_object extends midcom_core_dbaobject
     /**
      * Update the object timestamp.
      */
-    public function _on_creating()
+    public function _on_creating() : bool
     {
         $this->timestamp = time();
         return true;
@@ -50,7 +50,7 @@ class midcom_core_temporary_object extends midcom_core_dbaobject
     /**
      * Update the object timestamp.
      */
-    public function _on_updating()
+    public function _on_updating() : bool
     {
         $this->timestamp = time();
         return true;
