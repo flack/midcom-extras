@@ -79,12 +79,6 @@ class midcom_helper_datamanager2_controller_create extends midcom_helper_dataman
     public $defaults = [];
 
     /**
-     * The name of the schema to use. If this is left to null, the first schema
-     * from the database is used instead.
-     */
-    var $schemaname = null;
-
-    /**
      * A reference to the object containing the creation callback. This reference
      * must be set prior initialization.
      *

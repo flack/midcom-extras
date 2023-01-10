@@ -204,7 +204,7 @@ class midcom_helper_datamanager2_ajax_autocomplete
 
             $items[] = $item;
         }
-        usort($items, ['self', 'sort_items']);
+        usort($items, [self::class, 'sort_items']);
 
         return $items;
     }

@@ -39,6 +39,12 @@ abstract class midcom_helper_datamanager2_controller extends midcom_baseclasses_
     var $schemadb = [];
 
     /**
+     * The name of the schema to use. If this is left to null, the first schema
+     * from the database is used instead.
+     */
+    var $schemaname = null;
+
+    /**
      * The datamanager instance which is used for data I/O processing.
      *
      * Set this member using the set_storage() helper function unless you

@@ -160,6 +160,11 @@ class midcom_helper_datamanager2_renderer_default extends HTML_QuickForm_Rendere
     private $_html;
 
     /**
+     * @var string
+     */
+    private $namespace;
+
+    /**
      * Constructor
      */
     public function __construct($namespace = '')
