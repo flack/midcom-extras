@@ -9,7 +9,7 @@ require_once $basedir . "/vendor/autoload.php";
 $schema_dirs = array
 (
     $basedir . '/vendor/openpsa/midcom/schemas/',
-    $basedir . '/vendor/openpsa/midcom/config/'
+    $basedir . '/schemas/'
 );
 
 $driver = new driver($schema_dirs, $basedir . '/var', '');

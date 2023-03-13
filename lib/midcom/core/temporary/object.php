@@ -17,10 +17,10 @@
  */
 class midcom_core_temporary_object extends midcom_core_dbaobject
 {
-    public $__midcom_class_name__ = __CLASS__;
-    public $__mgdschema_class_name__ = 'midcom_core_temporary_object_db';
+    public string $__midcom_class_name__ = __CLASS__;
+    public string $__mgdschema_class_name__ = 'midcom_core_temporary_object_db';
     public $_use_activitystream = false;
-    public $_use_rcs = false;
+    public bool $_use_rcs = false;
 
     /**
      * These objects have no restrictions whatsoever directly assigned to them.
