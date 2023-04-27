@@ -1,5 +1,4 @@
-$.widget( "custom.category_complete", $.ui.autocomplete,
-{
+$.widget( "custom.category_complete", $.ui.autocomplete, {
     _create: function() {
         this._super();
         this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
@@ -7,7 +6,7 @@ $.widget( "custom.category_complete", $.ui.autocomplete,
     _renderMenu: function(ul, items) {
         var self = this,
         currentCategory = "";
-        $.each(items, function(index, item) {
+        items.forEach(function(item) {
             if (item.category !== currentCategory) {
                 ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
                 currentCategory = item.category;
@@ -17,7 +16,7 @@ $.widget( "custom.category_complete", $.ui.autocomplete,
     }
 });
 
-var midcom_helper_datamanager2_autocomplete = {
+window.midcom_helper_datamanager2_autocomplete = {
     get_default_options: function() {
         return {
             minLength: 2,
@@ -37,15 +36,9 @@ var midcom_helper_datamanager2_autocomplete = {
             if ($('#' + identifier + '_selection_holder').length === 0) {
                 return data;
             }
-            var filtered = [];
-
-            $.each(data, function(index, element) {
-                if ($('#' + identifier + '_selection_holder span.autocomplete-selected[data-id="' + element.id + '"]').length === 0) {
-                    filtered.push(element);
-                }
+            return data.filter(function(element) {
+                return $('#' + identifier + '_selection_holder span.autocomplete-selected[data-id="' + element.id + '"]').length === 0;
             });
-
-            return filtered;
         }
 
         if (cache === undefined) {
@@ -57,9 +50,12 @@ var midcom_helper_datamanager2_autocomplete = {
         }
 
         query_options.term = term;
+        $('.ui-autocomplete-loading').removeClass('ui-autocomplete-error')
+
         $.ajax({
             url: query_options.handler_url,
             dataType: "json",
+            method: query_options.method,
             data: query_options,
             success: function(data) {
                 if (!$.isEmptyObject(data)) {
@@ -79,7 +75,7 @@ var midcom_helper_datamanager2_autocomplete = {
     },
 
     select: function(event, ui) {
-        var identifier = $(event.target).attr('id').replace(/_search_input$/, '');
+        var identifier = event.target.id.replace(/_search_input$/, '');
 
         if ($('#' + identifier + '_selection_holder').length > 0) {
             midcom_helper_datamanager2_autocomplete.update_selection(identifier, ui.item.id, 'add');
@@ -116,7 +112,7 @@ var midcom_helper_datamanager2_autocomplete = {
                 },
                 text: false
             })
-            .bind('click', function() {
+            .on('click', function() {
                 var url = creation_url + '?chooser_widget_id=' + identifier;
                 if (   $('#' + identifier + '_search_input').val() !== ''
                     && handler_options.creation_default_key !== undefined) {
@@ -126,18 +122,14 @@ var midcom_helper_datamanager2_autocomplete = {
                 var iframe_html = '<iframe src="' + url + '" id="' + identifier + '_creation_dialog_content"'
                     + ' class="chooser_widget_creation_dialog_content"'
                     + ' frameborder="0"'
-                    + ' marginwidth="0"'
-                    + ' marginheight="0"'
                     + ' width="100%"'
                     + ' height="100%"'
-                    + ' scrolling="auto" />';
+                    + ' scrolling="auto"></iframe>';
 
-                create_dialog
-                    .html(iframe_html)
-                    .dialog({
-                        height: 350,
-                        width: 500
-                    });
+                make_dialog(create_dialog.html(iframe_html), {
+                    height: 350,
+                    width: 500
+                });
             });
     },
 
@@ -147,8 +139,7 @@ var midcom_helper_datamanager2_autocomplete = {
     add_result_item: function(identifier, data) {
         var handler_options = window[identifier + '_handler_options'],
             input_value = '';
-
-        $(handler_options.result_headers).each(function(index, value) {
+        handler_options.result_headers.forEach(function(value) {
             if (data[value.name] !== undefined) {
                 input_value += data[value.name] + ', ';
             }
@@ -169,7 +160,7 @@ var midcom_helper_datamanager2_autocomplete = {
             },
             options =  $.extend(dm2_defaults, midcom_helper_datamanager2_autocomplete.get_default_options()),
             input = $('#' + selector),
-            readonly = (input.attr('type') === 'hidden') ? true : false,
+            readonly = input.attr('type') === 'hidden',
             selection_holder_class = 'autocomplete-selection-holder';
 
         function remove_item(item) {
@@ -214,19 +205,17 @@ var midcom_helper_datamanager2_autocomplete = {
             midcom_helper_datamanager2_autocomplete.enable_creation_mode(identifier, handler_options.creation_handler);
             input.parent().addClass('autocomplete-widget-creation-enabled');
         }
-        if (!$.isEmptyObject(handler_options.preset)) {
-            $.each(handler_options.preset_order, function(key, id) {
-                var text = handler_options.preset[id];
-                if (handler_options.id_field === 'id') {
-                    id = parseInt(id);
-                }
-                midcom_helper_datamanager2_autocomplete.add_item(identifier, id, text, 'autocomplete-saved');
-                if (input.is('[required]')) {
-                    input.prop('required', false);
-                    input.data('required', true)
-                }
-            });
-        }
+        handler_options.preset_order.forEach(function(id) {
+            var text = handler_options.preset[id];
+            if (handler_options.id_field === 'id') {
+                id = parseInt(id);
+            }
+            midcom_helper_datamanager2_autocomplete.add_item(identifier, id, text, 'autocomplete-saved');
+            if (input.is('[required]')) {
+                input.prop('required', false);
+                input.data('required', true)
+            }
+        });
         if (readonly) {
             return;
         }
@@ -234,7 +223,14 @@ var midcom_helper_datamanager2_autocomplete = {
         if (handler_options.categorize_by_parent_label !== false) {
             input.category_complete(options);
         } else {
-            input.autocomplete(options);
+            input
+                .autocomplete(options)
+                .autocomplete("instance")._renderItem = function(ul, item) {
+                    var desc = item.description || '';
+                    return $('<li>')
+                        .append('<div><div class="item-label">' + item.label + '</div><span class="item-description">' + desc + "</span></div>" )
+                        .appendTo( ul );
+                };
         }
 
         input.parent().on('click', '.autocomplete-selection-holder .autocomplete-action-icon', function() {
@@ -254,6 +250,8 @@ var midcom_helper_datamanager2_autocomplete = {
         if (handler_options.sortable === true) {
             $("#" + identifier + "_selection_holder").sortable({
                 items: "> span.autocomplete-item",
+                placeholder: 'autocomplete-placeholder',
+                forcePlaceholderSize: true,
                 update: function() {
                     var result = [];
                     $("#" + identifier + "_selection_holder .autocomplete-item:not(.autocomplete-todelete)")
@@ -304,7 +302,7 @@ var midcom_helper_datamanager2_autocomplete = {
             status = (selected === true ? 'selected ' : 'todelete ') + status;
             item = $('<span class="autocomplete-item autocomplete-' + status + '" data-id="' + item_id + '"><span class="autocomplete-item-label" title="' + text + '">' + text + '</span></span>');
             if (!selection_holder.hasClass('autocomplete-selection-holder-readonly')) {
-                item.append('<span class="ui-icon autocomplete-action-icon"></span>');
+                item.append('<span class="autocomplete-action-icon"><i class="fa fa-check"></i><i class="fa fa-plus"></i><i class="fa fa-trash"></i></span>');
             }
             item.prependTo(selection_holder);
         } else if (existing_item.hasClass('autocomplete-todelete')) {
@@ -313,44 +311,35 @@ var midcom_helper_datamanager2_autocomplete = {
     },
     is_selected: function(identifier, item_id) {
         var selection = JSON.parse($('#' + identifier + '_selection').val());
-        return ($.inArray(item_id, selection) !== -1);
+        return selection.indexOf(item_id) !== -1;
     },
     update_selection: function(identifier, item_id, operation) {
         var selection = JSON.parse($('#' + identifier + '_selection').val()),
-            new_selection = [],
             handler_options = window[identifier + '_handler_options'],
             input = $('#' + identifier + '_search_input');
 
         if (operation === 'add') {
             if (handler_options.allow_multiple !== true) {
-                new_selection.push(item_id);
-            } else {
-                new_selection = selection;
-                if ($.inArray(item_id, new_selection) === -1) {
-                    new_selection.push(item_id);
-                }
+                selection = [];
             }
-            if (input.data('required')) {
-                input.prop('required', false);
+            if (selection.indexOf(item_id) === -1) {
+                selection.push(item_id);
             }
-        } else {
-            $.each(selection, function(index, item) {
-                if (String(item) !== String(item_id)) {
-                    new_selection.push(item);
-                }
-            });
-            if (input.data('required') && new_selection.length === 0) {
-                input.prop('required', true);
-            }
+        } else if (selection.indexOf(item_id) !== -1) {
+            selection.splice(selection.indexOf(item_id), 1);
         }
-        $('#' + identifier + '_selection').val(JSON.stringify(new_selection));
+        if (input.data('required')) {
+            input.prop('required', selection.length === 0);
+        }
+        $('#' + identifier + '_selection')
+            .val(JSON.stringify(selection))
+            .trigger('change');
     },
 
     /**
      * Generate and attach HTML for autocomplete widget (for use outside of DM2)
      */
-    create_widget: function(config, autocomplete_options)
-    {
+    create_widget: function(config, autocomplete_options) {
         var default_config = {
                 id_field: 'guid',
                 auto_wildcards: 'both',
@@ -362,22 +351,28 @@ var midcom_helper_datamanager2_autocomplete = {
             default_value = config.default_value || default_config.default_value,
             default_text = config.default_text || default_config.default_text,
             placeholder = config.placeholder || default_config.placeholder,
-            widget_html = '<input type="text" id="' + config.id + '_search_input" name="' + config.id + '_search_input" style="display: none" class="batch_widget" placeholder="' + placeholder + '" value="' + default_text + '" />';
+            widget = config.input || null;
 
-        widget_html += '<input type="hidden" id="' + config.id + '_selection" name="' + config.id + '_selection" value="' + default_value + '" />';
+        if (widget === null) {
+            widget = $('<input type="text" id="' + config.id + '_search_input" name="' + config.id + '_search_input" />');
+            if (config.insertAfter !== undefined) {
+                widget.insertAfter($(config.insertAfter));
+            } else if (config.appendTo !== undefined) {
+                widget.appendTo($(config.appendTo));
+            }
+        }
+        widget
+            .attr('placeholder', placeholder)
+            .val(default_text)
+            .after($('<input type="hidden" id="' + config.id + '_selection" name="' + config.id + '_selection" value="' + default_value + '" />'));
+
         autocomplete_options = $.extend({autoFocus: true}, midcom_helper_datamanager2_autocomplete.get_default_options(), autocomplete_options || {});
         window[config.id + '_handler_options'] = $.extend({}, default_config, config.widget_config);
 
-        if (config.insertAfter !== undefined) {
-            $(widget_html).insertAfter($(config.insertAfter));
-        } else if (config.appendTo !== undefined) {
-            $(widget_html).appendTo($(config.appendTo));
-        }
-
         if (window[config.id + '_handler_options'].categorize_by_parent_label === true) {
-            $('#' + config.id + '_search_input').category_complete(autocomplete_options);
+            widget.category_complete(autocomplete_options);
         } else {
-            $('#' + config.id + '_search_input').autocomplete(autocomplete_options);
+            widget.autocomplete(autocomplete_options);
         }
     }
 };

@@ -2,10 +2,7 @@
 {
     height: 18px;
     margin-left: .5em;
-    background: url('../stock-icons/16x16/list-add.png') left center no-repeat;
-    padding-left: 20px;
     font-weight: bold;
-    font-size: 8pt;
     float: left;
     cursor: pointer
 }
@@ -38,7 +35,6 @@
     padding: .2em .3em;
     background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
     background-color: rgba(0, 0, 0, .05);
 }
 
@@ -66,7 +62,6 @@ span.ui-sortable .autocomplete-item
     transition-property: background-color, max-width;
     display: inline-block;
     vertical-align: middle;
-    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 20em;
@@ -85,14 +80,11 @@ span.ui-sortable .autocomplete-item
     width: 16px;
     height: 16px;
     cursor: pointer;
-    background-repeat: no-repeat;
     margin-left: .5em;
     vertical-align: middle;
-}
-
-.autocomplete-action-icon
-{
-    opacity: .6
+    font-size: 14px;
+    opacity: .6;
+    transition: opacity .2s
 }
 .autocomplete-todelete .autocomplete-action-icon
 {
@@ -107,29 +99,34 @@ span.ui-sortable .autocomplete-item
     opacity: 1
 }
 
-.autocomplete-selected .autocomplete-action-icon
+.autocomplete-selected .autocomplete-action-icon:hover .fa-check,
+.autocomplete-saved .autocomplete-action-icon:hover .fa-check,
+.autocomplete-new .autocomplete-action-icon:hover .fa-plus,
+.autocomplete-new .autocomplete-action-icon .fa-check,
+.autocomplete-todelete .autocomplete-action-icon .fa-check
 {
-    background-position: 0 -192px
-}
-.autocomplete-saved .autocomplete-action-icon
-{
-    background-position: -208px -192px
-}
-
-.autocomplete-todelete .autocomplete-action-icon
-{
-    background-position: -32px -192px
+    display: none;
 }
 
-.autocomplete-selected .autocomplete-action-icon:hover,
-.autocomplete-saved .autocomplete-action-icon:hover
+.autocomplete-todelete .autocomplete-action-icon:hover .fa-check,
+.autocomplete-todelete .autocomplete-action-icon .fa-trash,
+.autocomplete-selected .autocomplete-action-icon:hover .fa-trash,
+.autocomplete-saved .autocomplete-action-icon:hover .fa-trash
 {
-    background-position: -32px -192px
+    display: inline-block;
 }
-.autocomplete-todelete .autocomplete-action-icon:hover
+.autocomplete-action-icon .fa-trash,
+.autocomplete-action-icon .fa-plus,
+.autocomplete-todelete .autocomplete-action-icon:hover .fa-trash
 {
-    background-position: -208px -192px
+    display: none;
 }
+
+.autocomplete-new .autocomplete-action-icon .fa-plus
+{
+    display: inline-block;
+}
+
 
 .autocomplete-todelete .autocomplete-item-label
 {
@@ -159,8 +156,8 @@ ul.ui-autocomplete
 {
     overflow: auto;
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
-    max-height: 100%; /* for IE < 9 & Opera */
     max-height: calc(100% - 6px);
+    max-width: 30%;
 }
 
 ul.ui-autocomplete .ui-menu-item a.ui-state-focus
@@ -170,9 +167,20 @@ ul.ui-autocomplete .ui-menu-item a.ui-state-focus
     margin: 0
 }
 
+ul.ui-autocomplete .item-description
+{
+    opacity: .6;
+}
+
 li.ui-autocomplete-category
 {
     font-weight: bold;
     color: #444;
     padding-top: .2em
+}
+
+
+.autocomplete-placeholder
+{
+    border: 2px solid rgba(0, 0, 0, 0.25);
 }
