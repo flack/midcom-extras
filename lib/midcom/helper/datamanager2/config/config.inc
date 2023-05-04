@@ -59,7 +59,7 @@
     ),
     'Cache' => array
     (
-        'SerializerPath' => midcom::get()->config->get('cache_base_directory') . 'htmlpurifier',
+        'SerializerPath' => midcom::get()->getCacheDir() . '/htmlpurifier',
         /* Disable cache while testing
         'DefinitionImpl' => null,
         */
