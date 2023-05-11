@@ -181,6 +181,13 @@ class midcom_helper_datamanager2_type_select extends midcom_helper_datamanager2_
     public $sortable = false;
 
     /**
+     * Method for $.ajax call
+     *
+     * @var string
+     */
+    public $method = 'GET';
+
+    /**
      * Initialize the class, if necessary, create a callback instance, otherwise
      * validate that an option array is present.
      */
