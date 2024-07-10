@@ -271,7 +271,7 @@ class midcom_helper_datamanager2_schema extends midcom_baseclasses_components_pu
     private function _load_schemadb_contents($schemadb)
     {
         if (is_string($schemadb)) {
-            $data = midcom_helper_misc::get_snippet_content($schemadb);
+            $data = self::get_snippet_content($schemadb);
             return midcom_helper_misc::parse_config($data);
         } elseif (is_array($schemadb)) {
             return $schemadb;
@@ -501,7 +501,7 @@ class midcom_helper_datamanager2_schema extends midcom_baseclasses_components_pu
             } else {
                 $path = $raw_db;
                 if (!array_key_exists($path, $loaded_dbs)) {
-                    $data = midcom_helper_misc::get_snippet_content($raw_db);
+                    $data = self::get_snippet_content($raw_db);
                     $loaded_dbs[$path] = midcom_helper_misc::parse_config($data, $path);
                 }
 
@@ -520,6 +520,15 @@ class midcom_helper_datamanager2_schema extends midcom_baseclasses_components_pu
         }
 
         return $schemadb;
+    }
+
+    private static function get_snippet_content(string $path)
+    {
+        $data = midcom_helper_misc::get_snippet_content_graceful($path);
+        if ($data === null) {
+            throw new midcom_error("Could not load the contents of the snippet {$path}: Snippet does not exist.");
+        }
+        return $data;
     }
 
     /**
