@@ -52,7 +52,7 @@ class midcom_helper_datamanager2_type_boolean extends midcom_helper_datamanager2
         if ($source === null) {
             $this->value = null;
         } else {
-            $this->value = (boolean) $source;
+            $this->value = (bool) $source;
         }
     }
 
@@ -63,7 +63,7 @@ class midcom_helper_datamanager2_type_boolean extends midcom_helper_datamanager2
 
     public function convert_from_csv($source)
     {
-        $this->value = (boolean) $source;
+        $this->value = (bool) $source;
     }
 
     public function convert_to_csv()

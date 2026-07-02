@@ -98,7 +98,7 @@ class midcom_helper_datamanager2_ajax_autocomplete
                         $data['value'] = (float) $data['value'];
                         break;
                     case MGD_TYPE_BOOLEAN:
-                        $data['value'] = (boolean) $data['value'];
+                        $data['value'] = (bool) $data['value'];
                         break;
                 }
                 $query->add_constraint($data['field'], $data['op'], $data['value']);
