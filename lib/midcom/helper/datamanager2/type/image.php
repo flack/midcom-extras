@@ -6,7 +6,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
  */
 
-use Symfony\Component\HttpFoundation\File\MimeType\FileBinaryMimeTypeGuesser;
+use Symfony\Component\Mime\FileBinaryMimeTypeGuesser;
 
 /**
  * Datamanager 2 Image type.
@@ -550,7 +550,7 @@ class midcom_helper_datamanager2_type_image extends midcom_helper_datamanager2_t
         }
 
         $guesser = new FileBinaryMimeTypeGuesser;
-        $mimetype = $guesser->guess($tmpname);
+        $mimetype = $guesser->guessMimeType($tmpname);
         if (array_key_exists($identifier, $this->_pending_attachments)) {
             unset($this->_pending_attachments[$identifier]);
             return $this->update_attachment($blob_identifier, $filename, $title, $mimetype, $tmpname, false);
@@ -589,7 +589,7 @@ class midcom_helper_datamanager2_type_image extends midcom_helper_datamanager2_t
     protected function _auto_convert_to_web_type()
     {
         $guesser = new FileBinaryMimeTypeGuesser;
-        $original_mimetype = $guesser->guess($this->_filter->get_file());
+        $original_mimetype = $guesser->guessMimeType($this->_filter->get_file());
         switch ($original_mimetype) {
             case 'image/png':
             case 'image/gif':
